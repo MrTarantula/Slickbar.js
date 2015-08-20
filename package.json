@@ -1,0 +1,30 @@
+{
+  "name": "angular-slickbar",
+  "version": "1.0.0",
+  "description": "A slick new sidebar with support for lots of sub-sidebars.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "del": "^1.2.1",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrTarantula/Slickbar.js"
+  },
+  "author": "Ryan Tauriainen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrTarantula/Slickbar.js/issues"
+  },
+  "homepage": "https://github.com/MrTarantula/Slickbar.js"
+}
