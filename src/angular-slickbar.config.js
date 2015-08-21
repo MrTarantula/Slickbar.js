@@ -3,9 +3,10 @@
 
     angular
         .module('ngSlickbar')
-        .constant('slickConfig', {
-            theme: "dark",  //dark or light
-            size: "normal", //normal or large
+        .constant('slickbarConfig', {
+            theme: "dark",      //dark or light
+            size: "normal",     //normal or large
+            fixed: false        //always fully expanded
         });
 
 })();

@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     del = require('del'),
     ngTemplates = require('gulp-angular-templatecache'),
-    rename = require('gulp-rename');;
+    rename = require('gulp-rename');
 
 var path = {
     js: ["src/*.module.js", "src/*.directive.js", "src/*.config.js", "src/**/*.js"],
@@ -17,13 +17,19 @@ var path = {
     src: "src/"
 };
 
-gulp.task('default', ['clean', 'js', 'css']);
+
+gulp.task('default', ['build']);
+
+gulp.task('build', ['clean'], function() {
+    gulp.start(['js', 'css']);
+});
 
 gulp.task('clean', function(cb) {
     del(path.build);
     del(path.template, cb);
 });
 
+//runs tpl to build templatecache, then concatenates and uglifies all
 gulp.task('js', ['tpl'], function() {
     return gulp
     .src(path.js)
