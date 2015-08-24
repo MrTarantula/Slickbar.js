@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
-    less= require('gulp-less'),
+    less = require('gulp-less'),
     uglify = require('gulp-uglify'),
     minify = require('gulp-minify-css'),
     concat = require('gulp-concat'),
     del = require('del'),
     ngTemplates = require('gulp-angular-templatecache'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    watch = require('gulp-watch');
 
 var path = {
     js: ["src/*.module.js", "src/*.directive.js", "src/*.config.js", "src/**/*.js"],
@@ -17,37 +18,42 @@ var path = {
     src: "src/"
 };
 
-
 gulp.task('default', ['build']);
 
-gulp.task('build', ['clean'], function() {
+gulp.task('watch', function (cb) {
+    watch('src/*.*', function () {
+        gulp.start('build', cb);
+    });
+});
+
+gulp.task('build', ['clean'], function () {
     gulp.start(['js', 'css']);
 });
 
-gulp.task('clean', function(cb) {
+gulp.task('clean', function (cb) {
     del(path.build);
     del(path.template, cb);
 });
 
 //runs tpl to build templatecache, then concatenates and uglifies all
-gulp.task('js', ['tpl'], function() {
+gulp.task('js', ['tpl'], function () {
     return gulp
-    .src(path.js)
-    .pipe(concat('angular-slickbar.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest(path.build));
+        .src(path.js)
+        .pipe(concat('angular-slickbar.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(path.build));
 });
 
-gulp.task('css', function() {
+gulp.task('css', function () {
     return gulp
-    .src(path.less)
+        .src(path.less)
         .pipe(less())
         .pipe(concat('angular-slickbar.min.css'))
         .pipe(minify())
         .pipe(gulp.dest(path.build));
 });
 
-gulp.task('tpl', function() {
+gulp.task('tpl', function () {
     return gulp
         .src(path.templateHTML)
         .pipe(ngTemplates({
